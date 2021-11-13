@@ -16,5 +16,7 @@ import { flipCard, tapCard } from '../components/card.js'
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-tapCard();
-flipCard();
+document.addEventListener('turbolinks:load', () => {
+  tapCard();
+  flipCard();
+});

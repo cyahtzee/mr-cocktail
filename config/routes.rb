@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'cocktails#main'
   resources :cocktails, only: [:index, :new, :show, :create] do
     collection do
       get "alcoholic"
@@ -8,7 +9,8 @@ Rails.application.routes.draw do
     collection do
       get "virgin"
     end
-    resources :dose, only: [:new, :create]
+
+    resources :doses, only: [:new, :create]
   end
-  resources :dose, only: [:destroy]
+  resources :doses, only: [:destroy]
 end

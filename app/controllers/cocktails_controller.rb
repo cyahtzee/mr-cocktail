@@ -1,5 +1,9 @@
 class CocktailsController < ApplicationController
-  before_action :find_cocktail, only: [:create, :show]
+  before_action :find_cocktail, only: [:show]
+
+  def main
+    @cocktail = Cocktail.new
+  end
 
   def index
     @cocktails = Cocktail.all
