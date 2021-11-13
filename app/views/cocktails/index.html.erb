@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="cards">
+  <% @cocktails.each do |cocktail| %>
+    <div class="card-hello">
+      <%= image_tag(cocktail.image_url, alt: cocktail.name) %>
+        <div class="card-hello-info">
+         <%= link_to cocktail_path(cocktail) do %>
+        <h2><%= cocktail.name %></h2>
+        <% end %>
+          <ul>
+          <% cocktail.ingredients.each do |ingredient| %>
+          <li><%= ingredient.name %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>
