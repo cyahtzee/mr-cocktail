@@ -34,13 +34,13 @@ puts("Creating Cocktails...")
       dose = Dose.new
       dose.ingredient = pg
       dose.cocktail = drink
-      dose.save
     else
       ingredient = Ingredient.new(name: cocktail["strIngredient#{i}"])
       ingredient.save
       dose = Dose.new
       dose.ingredient = ingredient
     end
+    dose.save
     i += 1
   end
 end
