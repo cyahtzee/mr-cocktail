@@ -30,16 +30,15 @@ puts("Creating Cocktails...")
   i = 1
   while cocktail["strIngredient#{i}"]
     pg = Ingredient.find_by(name: cocktail["strIngredient#{i}"])
+    dose = Dose.new
     if pg
-      dose = Dose.new
       dose.ingredient = pg
-      dose.cocktail = drink
     else
       ingredient = Ingredient.new(name: cocktail["strIngredient#{i}"])
       ingredient.save
-      dose = Dose.new
       dose.ingredient = ingredient
     end
+    dose.cocktail = drink
     dose.save
     i += 1
   end
