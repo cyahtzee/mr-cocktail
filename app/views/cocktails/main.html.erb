@@ -2,11 +2,6 @@
   <div class="container">
     <h1><strong>100</strong> bottles of <strong>beer</strong> on the wall!</h1>
     <p>Find out original cocktail recipies or create your own</p>
-    <div class="cocktail-form">
-      <%= simple_form_for @cocktail do |f| %>
-      <%= f.input :name, label: false %>
-      <%= f.submit "drink up", class: "btn btn-sm btn-success" %>
-      <% end %>
-    </div>
+    <%= render 'cocktails/form_new', model: @cocktail %>
   </div>
 </div>

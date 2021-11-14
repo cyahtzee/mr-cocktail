@@ -1,0 +1,7 @@
+<div class="cocktail-form">
+  <%= simple_form_for(model) do |f| %>
+  <%= f.input :name, label: false %>
+  <%= f.input :photo, as: :file, label: false %>
+  <%= f.submit "drink up", class: "btn btn-sm btn-success" %>
+  <% end %>
+</div>

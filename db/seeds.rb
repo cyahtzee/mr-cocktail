@@ -5,24 +5,42 @@ puts("Destroying ingridients..")
 
 Cocktail.destroy_all
 Ingredient.destroy_all
+Dose.destroy_all
 
-puts("Creating ingredients...")
-url_ingridients = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
-ingredients = JSON.parse(URI.open(url_ingridients).read)['drinks']
-ingredients.each do |ingredient|
-  Ingredient.create!(name: ingredient['strIngredient1'])
-end
-puts("ingredients ready...")
+# puts("Creating ingredients...")
+# url_ingridients = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
+# ingredients = JSON.parse(URI.open(url_ingridients).read)['drinks']
+# ingredients.each do |ingredient|
+#   Ingredient.create!(name: ingredient['strIngredient1'])
+# end
+# puts("ingredients ready...")
 
 puts("Creating Cocktails...")
 
-10.times do
+20.times do
   url_cocktail = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
   cocktail = JSON.parse(URI.open(url_cocktail).read)['drinks'][0]
-  Cocktail.create!(
+  drink = Cocktail.new(
     name: cocktail['strDrink'],
     image_url: cocktail['strDrinkThumb'],
     category: cocktail['strAlcoholic'],
     instruction: cocktail['strInstructions']
   )
+  drink.save unless Cocktail.find_by(name: drink.name)
+  i = 1
+  while cocktail["strIngredient#{i}"]
+    pg = Ingredient.find_by(name: cocktail["strIngredient#{i}"])
+    if pg
+      dose = Dose.new
+      dose.ingredient = pg
+      dose.cocktail = drink
+      dose.save
+    else
+      ingredient = Ingredient.new(name: cocktail["strIngredient#{i}"])
+      ingredient.save
+      dose = Dose.new
+      dose.ingredient = ingredient
+    end
+    i += 1
+  end
 end

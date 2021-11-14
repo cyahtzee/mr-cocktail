@@ -47,6 +47,11 @@
 .item-flip-content {
   padding-left: 24px;
 }
+.item-flip-content img {
+  padding-left: 24px;
+  object-fit: cover;
+  object-position: center;
+}
 
 .item-flip-back {
   transform: rotateX(180deg);
