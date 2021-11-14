@@ -39,6 +39,11 @@
   /*customizable*/
   margin: 16px 0;
 }
+.card-hello-info ul {
+  /*customizable*/
+  margin: 16px 0;
+  list-style: none;
+}
 
 /* De-activate card hover style for tablet/mobiles */
 @media (min-width: 1100px) {
