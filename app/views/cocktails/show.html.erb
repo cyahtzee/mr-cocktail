@@ -9,7 +9,7 @@
       </div>
       <div class="item-flip-back">
         <div class="item-flip-content">
-          <%= image_tag(@cocktail.image_url, alt: @cocktail.name) %>
+          <%= @cocktail.image_url ? image_tag(@cocktail.image_url) : image_tag('https://image.freepik.com/free-photo/selection-various-cocktails-table_140725-2909.jpg') %>
         </div>
       </div>
     </div>
