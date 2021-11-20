@@ -1,21 +1,25 @@
 <div class="container">
   <div class="cards">
-  <% @cocktails.each do |cocktail| %>
-    <div class="card-hello">
-      <%# <%= image_tag(cocktail.image_url, alt: cocktail.name) %>
-        <%= cl_image_tag(cocktail.photo.key, width: 400, height: 300, crop: :fill) if cocktail.photo.attached? %>
-        <%= cocktail.image_url ? image_tag(cocktail.image_url) : image_tag('https://image.freepik.com/free-photo/selection-various-cocktails-table_140725-2909.jpg') %>
-        <div class="card-hello-info">
-          <%= link_to cocktail_path(cocktail) do %>
-          <h2><%= cocktail.name %></h2>
-          <% end %>
-          <ul>
-          <% cocktail.ingredients.each do |ingredient| %>
-          <li><%= ingredient.name %></li>
-          <% end %>
-          </ul>
+    <% if @cocktails.any? %>
+      <% @cocktails.each do |cocktail| %>
+        <div class="card-hello">
+          <%= cl_image_tag(cocktail.photo.key, width: 400, height: 300, crop: :fill) if cocktail.photo.attached? %>
+          <%= cocktail.image_url ? image_tag(cocktail.image_url) : image_tag('https://image.freepik.com/free-photo/selection-various-cocktails-table_140725-2909.jpg') %>
+          <div class="card-hello-info">
+            <%= link_to cocktail_path(cocktail) do %>
+              <h2><%= cocktail.name %></h2>
+            <% end %>
+            <ul>
+              <% cocktail.ingredients.each do |ingredient| %>
+                <li><%= ingredient.name %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
       <% end %>
-  </div>
+    </div>
+  <% else %>
+    <h2>Sorry! Couldn't find...</h2>
+    <%= link_to "Make a new cocktail", new_cocktail_path, style: 'text-decoration:none; color:green' %>
+  <% end %>
 </div>

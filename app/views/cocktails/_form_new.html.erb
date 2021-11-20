@@ -1,7 +1,11 @@
-<div class="cocktail-form">
-  <%= simple_form_for(model) do |f| %>
-  <%= f.input :name, label: false %>
-  <%= f.input :photo, as: :file, label: false %>
-  <%= f.submit "drink up", class: "btn btn-sm btn-success" %>
-  <% end %>
+<div class="contianer">
+  <div class="row">
+    <div class="col-4 offset-4">
+      <%= simple_form_for(model) do |f| %>
+        <%= f.input :name, label: false %>
+        <%= f.input :photo, as: :file, label: false %>
+        <%= f.submit "drink up", class: "btn btn-sm btn-success" %>
+      <% end %>
+    </div>
+  </div>
 </div>
